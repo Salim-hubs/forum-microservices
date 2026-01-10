@@ -1,8 +1,8 @@
-.login-page {
+.register-page {
   --background: linear-gradient(180deg, #0f0f1a, #1b1b2f);
 }
 
-.login-container {
+.register-container {
   height: calc(100vh - 64px);
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@
 
 .card {
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   background: #22223b;
   padding: 32px;
   border-radius: 16px;
@@ -29,55 +29,43 @@ h2 {
 .subtitle {
   margin: 8px 0 24px;
   color: #aaa;
-  font-size: 0.95rem;
 }
 
 input {
   width: 100%;
   padding: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   border-radius: 10px;
   border: none;
-  outline: none;
-  font-size: 1rem;
   background: #2f2f4a;
   color: white;
-}
-
-input::placeholder {
-  color: #999;
+  font-size: 1rem;
 }
 
 button {
   width: 100%;
   padding: 14px;
+  margin-top: 10px;
   background: linear-gradient(135deg, #5fa8ff, #7f6bff);
   border: none;
   border-radius: 10px;
-  font-size: 1rem;
   font-weight: bold;
   color: white;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(95,168,255,0.4);
-}
-
-.register-link {
+.login-link {
   margin-top: 20px;
   font-size: 0.9rem;
   color: #aaa;
 }
 
-.register-link span {
+.login-link span {
   cursor: pointer;
   color: #5fa8ff;
   font-weight: 600;
 }
 
-.register-link span:hover {
+.login-link span:hover {
   text-decoration: underline;
 }

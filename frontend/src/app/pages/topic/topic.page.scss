@@ -1,0 +1,55 @@
+.topic-page {
+  --background: linear-gradient(180deg, #0f0f1a, #1b1b2f);
+}
+
+.topic-container {
+  padding: 20px;
+}
+
+.message-card {
+  background: #22223b;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.message-card .meta {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+.message-card .content {
+  font-size: 1rem;
+  color: #fff;
+  white-space: pre-wrap; /* Conserve les retours à la ligne */
+}
+
+.new-message {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-message textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #2f2f4a;
+  color: white;
+  resize: vertical;
+}
+
+.new-message button {
+  align-self: flex-end;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #5fa8ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

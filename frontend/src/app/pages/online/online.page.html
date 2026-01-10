@@ -1,0 +1,14 @@
+<ion-content [fullscreen]="true">
+
+  <app-header title="Membres du forum" [logged]="true" [button]="true"></app-header>
+
+  <div class="users-list">
+    <div *ngFor="let u of users" class="user-card">
+      <span>{{ u.login }}</span>
+      <span [class.connected]="u.connected" [class.offline]="!u.connected">
+        {{ u.connected ? 'Connecté' : 'Déconnecté' }}
+      </span>
+    </div>
+  </div>
+
+</ion-content>

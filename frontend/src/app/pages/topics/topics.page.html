@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true" class="topics-page">
+
+  <app-header title="Forum" [logged]="true"></app-header>
+
+  <div class="topics-container">
+
+    <div class="members-link" (click)="goToOnline()">Membres du forum</div>
+
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+      <input type="text" placeholder="Rechercher..." [(ngModel)]="searchTerm">
+      <select [(ngModel)]="searchBy">
+        <option value="title">Titre</option>
+        <option value="creator">Créateur</option>
+      </select>
+      <button (click)="filterTopics()">🔍</button>
+    </div>
+
+    <!-- Liste des topics -->
+    <div *ngFor="let topic of filteredTopics" class="topic-card" (click)="openTopic(topic.id)">
+      <h3>{{ topic.title }}</h3>
+      <p class="meta">
+        Créé par {{ topic.creator }} — {{ topic.messages }} messages — {{ topic.date | date:'dd/MM/yyyy HH:mm' }}
+      </p>
+    </div>
+
+    <!-- Bouton créer topic -->
+    <button class="create-btn" (click)="openCreateTopicPopup()">➕ Créer un topic</button>
+
+    <!-- Popup création topic -->
+    <div *ngIf="showPopup" class="popup">
+      <div class="popup-card">
+        <h3>Nouveau topic</h3>
+        <input type="text" placeholder="Titre du topic" [(ngModel)]="newTopicTitle">
+        <div class="popup-buttons">
+          <button (click)="createTopic()">Créer</button>
+          <button (click)="showPopup=false">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

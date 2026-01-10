@@ -1,0 +1,48 @@
+<ion-content [fullscreen]="true" class="profile-page">
+
+  <app-header title="Mon profil" [logged]="true"></app-header>
+
+  <div class="profile-container">
+
+    <div class="card">
+
+      <h2>👤 {{ username }}</h2>
+      <p class="subtitle">Paramètres du compte</p>
+
+      <div class="section">
+        <h3>Changer le mot de passe</h3>
+
+        <input
+          type="password"
+          placeholder="Mot de passe actuel"
+          [(ngModel)]="oldPassword"
+        />
+
+        <input
+          type="password"
+          placeholder="Nouveau mot de passe"
+          [(ngModel)]="newPassword"
+        />
+
+        <input
+          type="password"
+          placeholder="Confirmer le nouveau mot de passe"
+          [(ngModel)]="confirmPassword"
+        />
+
+        <button (click)="changePassword()">
+          Mettre à jour
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <button class="logout" (click)="logout()">
+        Se déconnecter
+      </button>
+
+    </div>
+
+  </div>
+
+</ion-content>

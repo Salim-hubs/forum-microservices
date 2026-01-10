@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true" class="topic-page">
+
+  <app-header title="{{topicTitle}}" [logged]="true" [button]="true"></app-header>
+
+  <div class="topic-container">
+
+    <!-- Messages -->
+    <div *ngFor="let msg of messages" class="message-card">
+      <p class="meta">{{ msg.creator }} — {{ msg.date | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p class="content">{{ msg.content }}</p>
+    </div>
+
+    <!-- Nouveau message -->
+    <div class="new-message">
+      <textarea placeholder="Écrire un message..." [(ngModel)]="newMessage"></textarea>
+      <button (click)="postMessage()">Envoyer</button>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,95 @@
+.forum-header {
+  height: 64px;
+  width: 100%;
+  background: linear-gradient(90deg, #1b1b2f, #22223b);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .left,
+  .center,
+  .right {
+    display: flex;
+    align-items: center;
+  }
+
+  .left {
+    flex: 1;
+    gap: 12px;
+  }
+
+  .center {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  /* Logo */
+  .logo {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.1);
+  }
+
+  /* Titre */
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* Bouton Retour aux topics */
+  .center button {
+    background: linear-gradient(135deg, #5fa8ff, #4c8dff);
+    border: none;
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(95, 168, 255, 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .center button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(95, 168, 255, 0.45);
+    filter: brightness(1.1);
+  }
+
+  .center button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(95, 168, 255, 0.35);
+  }
+
+  /* Avatar profil */
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .avatar:hover {
+    border-color: #5fa8ff;
+    transform: scale(1.08);
+  }
+}

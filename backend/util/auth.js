@@ -1,5 +1,5 @@
 const session = require("./sessionJWT");
-const { sendUserError } = require("./message");
+const { sendError } = require("./message");
 
 /**
  * Vérifie si la requête contient un JWT valide.
@@ -14,7 +14,7 @@ function isAuthenticated(request, result) {
 
     // Vérifie si le cookie existe et contient un userId valide
     if (!payload || typeof payload.userId === "undefined" || payload.userId === -1) {
-        sendUserError(result, "Session invalide ou expirée.");
+        sendError(result, "Session invalide ou expirée.");
         return null;
     }
 

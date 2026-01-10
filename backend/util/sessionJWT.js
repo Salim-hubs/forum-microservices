@@ -1,6 +1,8 @@
 const JWT = require('jsonwebtoken');
 const fs = require('fs');
 
+const activeSessions = require("./activeSessions");
+
 // Récupération des clés publique et privée
 // Ces instructions ne sont exécutées qu'au démarrage du serveur
 const RSA_PRIVATE_KEY = fs.readFileSync('./keys/jwtRS256.key');
@@ -76,6 +78,7 @@ function sendSessionCookie(req, res, payload) {
     // Notez que cela a un coût (de chiffrement) et, donc, on veut éviter
     // de créer un nouveau JWT à chaque requête.
     let jwtToken = '';
+    const now = Math.floor(Date.now() / 1000);
     if(
         (typeof payload.userId !== 'undefined')
         &&
@@ -100,6 +103,8 @@ function sendSessionCookie(req, res, payload) {
         secure: false,
         sameSite: 'Lax'
     });
+
+    activeSessions.addSession(payload.userId, jwtToken, 3600); // 1h = 3600s
 }
 
 module.exports.decodeSessionCookie = decodeSessionCookie;

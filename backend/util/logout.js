@@ -1,17 +1,11 @@
 const { sendMessage } = require("./message");
 
-function logout(request, result) {
-    
-  // Supprime le cookie SESSIONID
-  result.clearCookie("SESSIONID", {
-    httpOnly: true,
-    secure: false, // passe à true en production (HTTPS)
-    sameSite: "Lax",
-    path: "/"
-  });
+const activeSessions = require("../util/activeSessions");
 
-  // Envoie une réponse simple de confirmation
-  return sendMessage(result, "Déconnexion réussie.");
+function logout(req, res) {
+  if(req.cookies.SESSIONID) activeSessions.removeSession(req.cookies.SESSIONID);
+  res.clearCookie("SESSIONID");
+  sendMessage(res, "Déconnecté.");
 }
 
 module.exports.logout = logout;

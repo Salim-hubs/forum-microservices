@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent  implements OnInit {
+export class HeaderComponent {
+  title = input.required<string>();
+  logged = input.required<boolean>();
+  button = input<boolean>(false);
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit() {}
+  goToProfile() {
+    this.router.navigate(["profile"]);
+  }
 
+  goToTopics() {
+    this.router.navigate(["topics"]);
+  }
 }

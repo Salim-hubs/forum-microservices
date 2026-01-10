@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true" class="register-page">
+
+  <app-header title="Créer un compte" [logged]="false"></app-header>
+
+  <div class="register-container">
+
+    <div class="card">
+      <h2>Rejoins le forum 🚀</h2>
+      <p class="subtitle">Crée ton compte en quelques secondes</p>
+
+      <input
+        type="text"
+        placeholder="Nom d'utilisateur"
+        [(ngModel)]="login"
+      />
+
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        [(ngModel)]="password"
+      />
+
+      <input
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        [(ngModel)]="passwordConfirm"
+      />
+
+      <button (click)="register()">
+        Créer le compte
+      </button>
+
+      <div class="login-link" (click)="goToLogin()">
+        Déjà un compte ? <span>Se connecter</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
