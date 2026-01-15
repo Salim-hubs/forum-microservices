@@ -1,0 +1,30 @@
+const config = require('./sqlConfig').config;
+const mysql = require('mysql2');
+
+let db = 0;
+
+function connect(){
+    db = mysql.createConnection({
+        host     : config.sqlHost,
+        user     : config.sqlLogin,
+        password : config.sqlPassword,
+        database : config.sqlDatabase
+  });
+}
+
+function query(query, data) {
+    return new Promise((resolve, reject) => {
+        db.query(
+            query,
+            data,
+            (error, results) => {
+                if (error) reject(error);
+                else resolve(results);
+            }
+        );
+    });
+}
+
+connect();
+
+module.exports.query = query;

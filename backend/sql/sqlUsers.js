@@ -40,7 +40,7 @@ async function getUserLogin(userId) {
 }
 
 async function getAllUsers() {
-  const query = `SELECT id, login FROM Users`;
+  const query = `SELECT id, login FROM users`;
   return mysqlConnect.query(query, []);
 }
 

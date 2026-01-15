@@ -6,10 +6,16 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
+// Pre-import Ionic core to avoid lazy-loading issues with Vite
+import '@ionic/core';
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
+    provideIonicAngular({
+      // Use 'no-preference' to let the system decide, avoids lazy-load issues
+      mode: 'md'
+    }),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient()
   ],

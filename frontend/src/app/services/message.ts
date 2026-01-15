@@ -4,23 +4,23 @@ import { Observable } from 'rxjs';
 
 export interface BackendResponse {
   status: "ok" | "error";
-  data: any; 
+  data: any;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class Message {
-  private backendUrl: string = "http://127.0.0.1:3000/"
+  // URL de l'API Gateway (point d'entrée unique vers les microservices)
+  private apiGatewayUrl: string = "http://127.0.0.1:3000/";
 
   constructor(private httpClient: HttpClient) { }
 
   sendMessage(url : string, data : any): Observable<BackendResponse> {
-    // on construit l'URL sur laquelle on va envoyer la requête au serveur
-    const fullUrl = this.backendUrl + url;
+    // Toutes les requêtes passent par l'API Gateway
+    const fullUrl = this.apiGatewayUrl + url;
 
-    // à l'aide d'un post, on récupère la réponse du serveur
     return this.httpClient.post<BackendResponse>(fullUrl, data, {withCredentials : true});
   }
-  
+
 }
