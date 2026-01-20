@@ -1,0 +1,37 @@
+# Dossier archive (ancien code, guides personnels)
+archive/
+
+# Dependances Node.js
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build Angular
+frontend/.angular/
+frontend/www/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+
+# Docker
+*.tar

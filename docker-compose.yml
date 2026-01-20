@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Base de données MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: forum-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: forum
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+    networks:
+      - forum-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Microservice utilisateurs
+  user-service:
+    build: ./user-service
+    container_name: forum-user-service
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: forum
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - forum-network
+
+  # Microservice topics
+  topic-service:
+    build: ./topic-service
+    container_name: forum-topic-service
+    ports:
+      - "3002:3002"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: forum
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - forum-network
+
+  # API Gateway
+  api-gateway:
+    build: ./api-gateway
+    container_name: forum-api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      USER_SERVICE_URL: http://user-service:3001
+      TOPIC_SERVICE_URL: http://topic-service:3002
+    depends_on:
+      - user-service
+      - topic-service
+    networks:
+      - forum-network
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    container_name: forum-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - forum-network
+
+volumes:
+  mysql_data:
+
+networks:
+  forum-network:
+    driver: bridge

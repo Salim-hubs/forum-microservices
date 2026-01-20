@@ -9,7 +9,8 @@ const port = 3000;
 
 // Configuration CORS
 app.use(cors({
-    origin: ["http://127.0.0.1:4200", "http://localhost:4200"],
+    origin: ["http://127.0.0.1:4200", "http://localhost:4200", "http://localhost:8080",         
+  "http://localhost"],
     credentials: true
 }));
 
@@ -18,8 +19,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // URLs des microservices
-const USER_SERVICE = 'http://127.0.0.1:3001';
-const TOPIC_SERVICE = 'http://127.0.0.1:3002';
+// const USER_SERVICE = 'http://127.0.0.1:3001';
+// const TOPIC_SERVICE = 'http://127.0.0.1:3002';
+// const USER_SERVICE = 'http://localhost:3001';
+// const TOPIC_SERVICE = 'http://localhost:3002';
+
+//aveec docker et préparation pour déploiment 
+
+const USER_SERVICE = process.env.USER_SERVICE_URL || 'http://localhost:3001';                   
+const TOPIC_SERVICE = process.env.TOPIC_SERVICE_URL || 'http://localhost:3002';                 
 
 // Fonction pour proxy les requêtes
 async function proxyRequest(targetUrl, req, res) {
@@ -81,7 +89,7 @@ app.get('/health', (req, res) => {
     });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`[API-GATEWAY] Listening on http://127.0.0.1:${port}`);
     console.log(`[API-GATEWAY] Routing to user-service (3001) and topic-service (3002)`);
 });

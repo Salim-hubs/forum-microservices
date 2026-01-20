@@ -12,7 +12,7 @@ export interface BackendResponse {
 })
 export class Message {
   // URL de l'API Gateway (point d'entrée unique vers les microservices)
-  private apiGatewayUrl: string = "http://127.0.0.1:3000/";
+  private apiGatewayUrl: string = "http://localhost:3000/";
 
   constructor(private httpClient: HttpClient) { }
 

@@ -3,8 +3,12 @@
 const express = require('express');
 
 const app = express();
-const host = "127.0.0.1";
-const port = 3002;
+// const host = "127.0.0.1";
+// const port = 3002;
+
+//partie docker 
+const host = "0.0.0.0";                                                                         
+const port = process.env.PORT || 3002;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));

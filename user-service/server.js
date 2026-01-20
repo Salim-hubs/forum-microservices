@@ -3,8 +3,11 @@
 const express = require('express');
 
 const app = express();
-const host = "127.0.0.1";
-const port = 3001;
+//config en local , passons en prod avec docker
+// const host = "127.0.0.1";
+// const port = 3001;
+ const host = "0.0.0.0";
+ const port = process.env.PORT || 3001;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
