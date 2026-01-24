@@ -4,6 +4,9 @@ archive/
 # Dependances Node.js
 node_modules/
 
+#rapport
+RAPPORT_DEPLOIEMENT.md
+
 # Logs
 *.log
 npm-debug.log*
